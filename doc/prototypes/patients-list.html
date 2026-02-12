@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lista de Pacientes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D92D2D", 
+                        "primary-hover": "#B91C1C",
+                        "background-light": "#F3F4F6", 
+                        "background-dark": "#111827", 
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "input-bg-light": "#F9FAFB",
+                        "input-bg-dark": "#374151",
+                        "text-secondary-light": "#6B7280",
+                        "text-secondary-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        'xl': "1rem",
+                        '2xl': "1.5rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        body::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col transition-colors duration-300">
+<main class="flex-grow py-8 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl w-full mx-auto">
+<div class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Lista de Pacientes</h2>
+<p class="text-text-secondary-light dark:text-text-secondary-dark">Gerencie e visualize os pacientes cadastrados no sistema.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm text-sm font-medium">
+<span class="material-symbols-outlined text-xl">download</span>
+                        Baixar Lista
+                    </button>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-lg font-medium shadow-lg shadow-red-200 dark:shadow-red-900/20 transition-all transform active:scale-95 text-sm">
+<span class="material-symbols-outlined text-xl">person_add</span>
+                        Cadastrar Novo Paciente
+                    </button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft overflow-hidden border border-gray-100 dark:border-gray-700 mb-8">
+<div class="p-6 border-b border-gray-100 dark:border-gray-700">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="md:col-span-1">
+<label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1" for="search-name">Nome do Paciente</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 text-lg">search</span>
+</div>
+<input class="w-full pl-10 bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary text-sm py-2" id="search-name" placeholder="Buscar por nome..." type="text"/>
+</div>
+</div>
+<div class="md:col-span-1">
+<label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1" for="search-cpf">CPF</label>
+<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary text-sm py-2" id="search-cpf" placeholder="000.000.000-00" type="text"/>
+</div>
+<div class="md:col-span-1">
+<label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1" for="filter-status">Status de Saúde</label>
+<select class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary text-sm py-2" id="filter-status">
+<option value="">Todos</option>
+<option value="diabetic">Diabético</option>
+<option value="hypertensive">Hipertenso</option>
+<option value="renal">Problema Renal</option>
+<option value="obesity">Obesidade</option>
+</select>
+</div>
+<div class="md:col-span-1 flex items-end">
+<button class="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition-colors text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filtrar
+                        </button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800/50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Nome</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">CPF</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Data de Nascimento</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Cidade</th>
+<th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Indicadores</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider" scope="col">Ações</th>
+</tr>
+</thead>
+<tbody class="bg-white dark:bg-surface-dark divide-y divide-gray-200 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                            JS
+                                        </div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">João da Silva</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">ID: #00421</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">123.456.789-00</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">15/03/1980</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">44 anos</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                                        São Paulo
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex justify-center -space-x-1">
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-500 dark:text-blue-300 border-2 border-white dark:border-surface-dark" title="Diabético">
+<span class="material-symbols-outlined text-sm">water_drop</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-500 dark:text-red-300 border-2 border-white dark:border-surface-dark" title="Hipertenso">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Ver Detalhes">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400 font-bold">
+                                            MO
+                                        </div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Maria Oliveira</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">ID: #00422</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">987.654.321-11</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">22/07/1965</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">59 anos</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                                        Rio de Janeiro
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex justify-center -space-x-1">
+<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-orange-500 dark:text-orange-300 border-2 border-white dark:border-surface-dark" title="Problema Renal">
+<span class="material-symbols-outlined text-sm">healing</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Ver Detalhes">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold">
+                                            CS
+                                        </div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Carlos Santos</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">ID: #00425</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">456.123.789-22</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">10/11/1990</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">33 anos</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                                        Belo Horizonte
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex justify-center -space-x-1">
+<div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-green-500 dark:text-green-300 border-2 border-white dark:border-surface-dark" title="Obesidade">
+<span class="material-symbols-outlined text-sm">monitor_weight</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-500 dark:text-red-300 border-2 border-white dark:border-surface-dark" title="Hipertenso">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-500 dark:text-blue-300 border-2 border-white dark:border-surface-dark" title="Diabético">
+<span class="material-symbols-outlined text-sm">water_drop</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Ver Detalhes">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0">
+<div class="h-10 w-10 rounded-full bg-teal-100 dark:bg-teal-900/20 flex items-center justify-center text-teal-600 dark:text-teal-400 font-bold">
+                                            AL
+                                        </div>
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900 dark:text-white">Ana Lima</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">ID: #00430</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">321.654.987-55</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900 dark:text-gray-300">05/02/1978</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">46 anos</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                                        Curitiba
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-center">
+<div class="flex justify-center -space-x-1">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700/60 flex items-center justify-center text-gray-400 dark:text-gray-500 border-2 border-white dark:border-surface-dark" title="Nenhum indicador">
+<span class="material-symbols-outlined text-sm">remove</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-2">
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Editar">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors p-1" title="Ver Detalhes">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-white dark:bg-surface-dark px-4 py-3 border-t border-gray-200 dark:border-gray-700 sm:px-6">
+<div class="flex items-center justify-between">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-gray-700 dark:text-gray-400">
+                                Mostrando <span class="font-medium text-gray-900 dark:text-white">1</span> a <span class="font-medium text-gray-900 dark:text-white">4</span> de <span class="font-medium text-gray-900 dark:text-white">42</span> resultados
+                            </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Anterior</span>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-300 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:outline-offset-0">...</span>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Próximo</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
