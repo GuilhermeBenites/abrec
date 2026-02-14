@@ -1,247 +1,541 @@
-<!DOCTYPE html>
-<html lang="pt-BR"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Cadastro de Paciente</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#D92D2D", 
-                        "primary-hover": "#B91C1C",
-                        "background-light": "#F3F4F6", 
-                        "background-dark": "#111827", 
-                        "surface-light": "#FFFFFF",
-                        "surface-dark": "#1F2937",
-                        "input-bg-light": "#F9FAFB",
-                        "input-bg-dark": "#374151",
-                        "text-secondary-light": "#6B7280",
-                        "text-secondary-dark": "#9CA3AF",
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Cadastro de Paciente</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#D92D2D',
+                            'primary-hover': '#B91C1C',
+                            'background-light': '#F3F4F6',
+                            'background-dark': '#111827',
+                            'surface-light': '#FFFFFF',
+                            'surface-dark': '#1F2937',
+                            'input-bg-light': '#F9FAFB',
+                            'input-bg-dark': '#374151',
+                            'text-secondary-light': '#6B7280',
+                            'text-secondary-dark': '#9CA3AF',
+                        },
+                        fontFamily: {
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        borderRadius: {
+                            DEFAULT: '0.5rem',
+                            xl: '1rem',
+                            '2xl': '1.5rem',
+                        },
+                        boxShadow: {
+                            soft: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        },
                     },
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        'xl': "1rem",
-                        '2xl': "1.5rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                    }
                 },
-            },
-        };
-    </script>
-<style>
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #D92D2D;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #D92D2D;
-        }
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
-        body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        body::-webkit-scrollbar-thumb {
-            background-color: rgba(156, 163, 175, 0.5);
-            border-radius: 20px;
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col justify-center transition-colors duration-300">
-<main class="flex-grow py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-<div class="max-w-5xl w-full mx-auto">
-<div class="mb-8 text-center">
-<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Cadastro de Paciente</h2>
-<p class="text-text-secondary-light dark:text-text-secondary-dark">Formulário de admissão para novos pacientes.</p>
-</div>
-<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft overflow-hidden border border-gray-100 dark:border-gray-700">
-<div class="p-6 border-b border-gray-100 dark:border-gray-700 bg-red-50 dark:bg-red-900/10 flex items-start sm:items-center gap-4">
-<div class="bg-red-100 dark:bg-red-800 text-primary dark:text-red-200 p-3 rounded-xl flex-shrink-0">
-<span class="material-icons-round text-3xl">medical_services</span>
-</div>
-<div>
-<h3 class="text-xl font-bold text-gray-900 dark:text-white">Ficha de Admissão</h3>
-<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Preencha os dados do paciente abaixo com atenção.</p>
-</div>
-</div>
-<form class="p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-<div class="lg:col-span-7 space-y-6">
-<div class="flex items-center gap-2 mb-4">
-<span class="material-icons-round text-primary text-sm">person</span>
-<span class="text-xs font-bold text-primary tracking-wider uppercase">Dados Pessoais</span>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="name">Nome Completo</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="name" placeholder="Ex: João da Silva" type="text"/>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="dob">Nascimento</label>
-<div class="relative">
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors pl-3 pr-10" id="dob" type="date"/>
-</div>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sexo</label>
-<div class="relative bg-input-bg-light dark:bg-input-bg-dark rounded-lg p-1 flex border border-gray-200 dark:border-gray-600 h-[42px]">
-<input checked="" class="peer/m hidden" id="gender-m" name="gender" type="radio"/>
-<label class="flex-1 text-center rounded-md cursor-pointer text-sm font-medium text-gray-500 dark:text-gray-400 peer-checked/m:bg-white dark:peer-checked/m:bg-gray-600 peer-checked/m:text-primary dark:peer-checked/m:text-white peer-checked/m:shadow-sm transition-all flex items-center justify-center" for="gender-m">Masculino</label>
-<input class="peer/f hidden" id="gender-f" name="gender" type="radio"/>
-<label class="flex-1 text-center rounded-md cursor-pointer text-sm font-medium text-gray-500 dark:text-gray-400 peer-checked/f:bg-white dark:peer-checked/f:bg-gray-600 peer-checked/f:text-primary dark:peer-checked/f:text-white peer-checked/f:shadow-sm transition-all flex items-center justify-center" for="gender-f">Feminino</label>
-</div>
-</div>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cpf">CPF</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="cpf" placeholder="000.000.000-00" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="address">Endereço</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="address" placeholder="Rua, Número, Complemento" type="text"/>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="bairro">Bairro</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="bairro" placeholder="Bairro" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="city">Cidade</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="city" placeholder="Cidade" type="text"/>
-</div>
-</div>
-</div>
-<div class="lg:col-span-5 space-y-6">
-<div class="flex items-center gap-2 mb-4">
-<span class="material-icons-round text-primary text-sm">monitor_heart</span>
-<span class="text-xs font-bold text-primary tracking-wider uppercase">Informações de Saúde</span>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-4">
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="peso">Peso (kg)</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="peso" placeholder="00.0" step="0.1" type="number"/>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="altura">Altura (cm)</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="altura" placeholder="000" type="number"/>
-</div>
-</div>
-<div class="bg-input-bg-light dark:bg-input-bg-dark rounded-xl border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 overflow-hidden">
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-500 dark:text-blue-300">
-<span class="material-icons-round text-xl">water_drop</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">Diabético</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/40 flex items-center justify-center text-red-500 dark:text-red-300">
-<span class="material-icons-round text-xl">favorite</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">Hipertenso</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-orange-500 dark:text-orange-300">
-<span class="material-icons-round text-xl">healing</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">Problema Renal</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-yellow-100 dark:bg-yellow-900/40 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
-<span class="material-icons-round text-xl">family_restroom</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">D.R.C na Família</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-green-500 dark:text-green-300">
-<span class="material-icons-round text-xl">monitor_weight</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">Obesidade</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="p-4 flex items-center justify-between hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center text-teal-500 dark:text-teal-300">
-<span class="material-icons-round text-xl">visibility</span>
-</div>
-<span class="font-medium text-gray-700 dark:text-gray-200">Exame Fundo de Olho</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:peer-focus:ring-red-800/30 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 mt-4">
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="pressao">Pressão Arterial</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="pressao" placeholder="12/8" type="text"/>
-</div>
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="glicemia">Glicemia (mg/dL)</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="glicemia" placeholder="90" type="number"/>
-</div>
-</div>
-<div class="mt-4">
-<div class="space-y-1">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="creatinina">Creatinina</label>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:ring-primary focus:border-primary dark:focus:ring-primary dark:focus:border-primary transition-colors" id="creatinina" placeholder="0.0 mg/dL" type="text"/>
-</div>
-</div>
-<div class="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-lg border border-blue-100 dark:border-blue-900/30 flex gap-3 mt-4">
-<span class="material-icons-round text-blue-500 dark:text-blue-400 text-sm mt-0.5">info</span>
-<p class="text-xs text-blue-700 dark:text-blue-300 leading-relaxed">
-                                Certifique-se de perguntar ao paciente sobre seu histórico familiar para doenças cardíacas e diabéticas, pois isso pode influenciar o protocolo de admissão.
+            };
+        </script>
+        <style>
+            .toggle-checkbox:checked {
+                right: 0;
+                border-color: #d92d2d;
+            }
+            .toggle-checkbox:checked + .toggle-label {
+                background-color: #d92d2d;
+            }
+            body::-webkit-scrollbar {
+                width: 8px;
+            }
+            body::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            body::-webkit-scrollbar-thumb {
+                background-color: rgba(156, 163, 175, 0.5);
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background-light dark:bg-background-dark flex min-h-screen flex-col justify-center font-sans text-gray-900 transition-colors duration-300 dark:text-gray-100"
+    >
+        <main
+            class="flex flex-grow items-center justify-center px-4 py-8 sm:px-6 lg:px-8"
+        >
+            <div class="mx-auto w-full max-w-5xl">
+                <div class="mb-8 text-center">
+                    <h2
+                        class="mb-2 text-3xl font-bold text-gray-900 dark:text-white"
+                    >
+                        Cadastro de Paciente
+                    </h2>
+                    <p
+                        class="text-text-secondary-light dark:text-text-secondary-dark"
+                    >
+                        Formulário de admissão para novos pacientes.
+                    </p>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark shadow-soft overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-700"
+                >
+                    <div
+                        class="flex items-start gap-4 border-b border-gray-100 bg-red-50 p-6 sm:items-center dark:border-gray-700 dark:bg-red-900/10"
+                    >
+                        <div
+                            class="flex-shrink-0 rounded-xl bg-red-100 p-3 text-primary dark:bg-red-800 dark:text-red-200"
+                        >
+                            <span class="material-icons-round text-3xl"
+                                >medical_services</span
+                            >
+                        </div>
+                        <div>
+                            <h3
+                                class="text-xl font-bold text-gray-900 dark:text-white"
+                            >
+                                Ficha de Admissão
+                            </h3>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm"
+                            >
+                                Preencha os dados do paciente abaixo com
+                                atenção.
                             </p>
-</div>
-</div>
-<div class="lg:col-span-12 pt-6 border-t border-gray-100 dark:border-gray-700 flex justify-end">
-<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white px-8 py-3.5 rounded-lg font-semibold shadow-lg shadow-red-200 dark:shadow-red-900/20 transition-all transform active:scale-95" type="button">
-<span class="material-icons-round">person_add</span>
-                            Cadastrar Paciente
-                        </button>
-</div>
-</form>
-</div>
-</div>
-</main>
-
-</body></html>
+                        </div>
+                    </div>
+                    <form
+                        class="grid grid-cols-1 gap-8 p-6 lg:grid-cols-12 lg:gap-12 lg:p-8"
+                    >
+                        <div class="space-y-6 lg:col-span-7">
+                            <div class="mb-4 flex items-center gap-2">
+                                <span
+                                    class="material-icons-round text-sm text-primary"
+                                    >person</span
+                                >
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary uppercase"
+                                    >Dados Pessoais</span
+                                >
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    for="name"
+                                    >Nome Completo</label
+                                >
+                                <input
+                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    id="name"
+                                    placeholder="Ex: João da Silva"
+                                    type="text"
+                                />
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="dob"
+                                        >Nascimento</label
+                                    >
+                                    <div class="relative">
+                                        <input
+                                            class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 pr-10 pl-3 text-gray-900 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                            id="dob"
+                                            type="date"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label
+                                        class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        >Sexo</label
+                                    >
+                                    <div
+                                        class="bg-input-bg-light dark:bg-input-bg-dark relative flex h-[42px] rounded-lg border border-gray-200 p-1 dark:border-gray-600"
+                                    >
+                                        <input
+                                            checked=""
+                                            class="peer/m hidden"
+                                            id="gender-m"
+                                            name="gender"
+                                            type="radio"
+                                        />
+                                        <label
+                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/m:bg-white peer-checked/m:text-primary peer-checked/m:shadow-sm dark:text-gray-400 dark:peer-checked/m:bg-gray-600 dark:peer-checked/m:text-white"
+                                            for="gender-m"
+                                            >Masculino</label
+                                        >
+                                        <input
+                                            class="peer/f hidden"
+                                            id="gender-f"
+                                            name="gender"
+                                            type="radio"
+                                        />
+                                        <label
+                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/f:bg-white peer-checked/f:text-primary peer-checked/f:shadow-sm dark:text-gray-400 dark:peer-checked/f:bg-gray-600 dark:peer-checked/f:text-white"
+                                            for="gender-f"
+                                            >Feminino</label
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    for="cpf"
+                                    >CPF</label
+                                >
+                                <input
+                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    id="cpf"
+                                    placeholder="000.000.000-00"
+                                    type="text"
+                                />
+                            </div>
+                            <div class="space-y-1">
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    for="address"
+                                    >Endereço</label
+                                >
+                                <input
+                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    id="address"
+                                    placeholder="Rua, Número, Complemento"
+                                    type="text"
+                                />
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="bairro"
+                                        >Bairro</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="bairro"
+                                        placeholder="Bairro"
+                                        type="text"
+                                    />
+                                </div>
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="city"
+                                        >Cidade</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="city"
+                                        placeholder="Cidade"
+                                        type="text"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6 lg:col-span-5">
+                            <div class="mb-4 flex items-center gap-2">
+                                <span
+                                    class="material-icons-round text-sm text-primary"
+                                    >monitor_heart</span
+                                >
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary uppercase"
+                                    >Informações de Saúde</span
+                                >
+                            </div>
+                            <div class="mb-4 grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="peso"
+                                        >Peso (kg)</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="peso"
+                                        placeholder="00.0"
+                                        step="0.1"
+                                        type="number"
+                                    />
+                                </div>
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="altura"
+                                        >Altura (cm)</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="altura"
+                                        placeholder="000"
+                                        type="number"
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                class="bg-input-bg-light dark:bg-input-bg-dark divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200 dark:divide-gray-700 dark:border-gray-700"
+                            >
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-500 dark:bg-blue-900/40 dark:text-blue-300"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >water_drop</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >Diabético</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 text-red-500 dark:bg-red-900/40 dark:text-red-300"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >favorite</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >Hipertenso</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-orange-500 dark:bg-orange-900/40 dark:text-orange-300"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >healing</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >Problema Renal</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 dark:bg-yellow-900/40 dark:text-yellow-400"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >family_restroom</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >D.R.C na Família</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/40 dark:text-green-300"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >monitor_weight</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >Obesidade</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                >
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 text-teal-500 dark:bg-teal-900/40 dark:text-teal-300"
+                                        >
+                                            <span
+                                                class="material-icons-round text-xl"
+                                                >visibility</span
+                                            >
+                                        </div>
+                                        <span
+                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            >Exame Fundo de Olho</span
+                                        >
+                                    </div>
+                                    <label
+                                        class="relative inline-flex cursor-pointer items-center"
+                                    >
+                                        <input
+                                            class="peer sr-only"
+                                            type="checkbox"
+                                        />
+                                        <div
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                        ></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mt-4 grid grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="pressao"
+                                        >Pressão Arterial</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="pressao"
+                                        placeholder="12/8"
+                                        type="text"
+                                    />
+                                </div>
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="glicemia"
+                                        >Glicemia (mg/dL)</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="glicemia"
+                                        placeholder="90"
+                                        type="number"
+                                    />
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="space-y-1">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        for="creatinina"
+                                        >Creatinina</label
+                                    >
+                                    <input
+                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        id="creatinina"
+                                        placeholder="0.0 mg/dL"
+                                        type="text"
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                class="mt-4 flex gap-3 rounded-lg border border-blue-100 bg-blue-50 p-4 dark:border-blue-900/30 dark:bg-blue-900/10"
+                            >
+                                <span
+                                    class="material-icons-round mt-0.5 text-sm text-blue-500 dark:text-blue-400"
+                                    >info</span
+                                >
+                                <p
+                                    class="text-xs leading-relaxed text-blue-700 dark:text-blue-300"
+                                >
+                                    Certifique-se de perguntar ao paciente sobre
+                                    seu histórico familiar para doenças
+                                    cardíacas e diabéticas, pois isso pode
+                                    influenciar o protocolo de admissão.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex justify-end border-t border-gray-100 pt-6 lg:col-span-12 dark:border-gray-700"
+                        >
+                            <button
+                                class="hover:bg-primary-hover flex w-full transform items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-semibold text-white shadow-lg shadow-red-200 transition-all active:scale-95 sm:w-auto dark:shadow-red-900/20"
+                                type="button"
+                            >
+                                <span class="material-icons-round"
+                                    >person_add</span
+                                >
+                                Cadastrar Paciente
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
