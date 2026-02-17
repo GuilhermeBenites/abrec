@@ -16,6 +16,8 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('patients', [PatientController::class, 'index'])->name('patients.index');
+    Route::get('patients/export', [PatientController::class, 'export'])->name('patients.export');
     Route::get('patients/create', [PatientController::class, 'create'])->name('patients.create');
     Route::post('patients', [PatientController::class, 'store'])->name('patients.store');
 });
