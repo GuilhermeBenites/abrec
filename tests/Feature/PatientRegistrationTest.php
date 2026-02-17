@@ -41,7 +41,7 @@ test('valid patient data can be stored', function () {
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('patients.create'));
+        ->assertRedirect(route('patients.index'));
     $response->assertSessionHas('success', 'Paciente cadastrado com sucesso.');
 
     $this->assertDatabaseHas('patients', [
@@ -76,7 +76,9 @@ test('patient with optional health data can be stored', function () {
         ->actingAs($user)
         ->post(route('patients.store'), $patientData);
 
-    $response->assertSessionHasNoErrors();
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('patients.index'));
 
     $patient = Patient::query()->where('cpf', '98765432100')->first();
     expect($patient)->not->toBeNull();

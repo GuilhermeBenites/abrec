@@ -36,7 +36,7 @@ import { useCurrentUrl } from '@/composables/useCurrentUrl';
 import { getInitials } from '@/composables/useInitials';
 import { toUrl } from '@/lib/utils';
 import type { BreadcrumbItem, NavItem } from '@/types';
-import { dashboard } from '@/routes';
+import { index } from '@/routes/patients';
 
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
@@ -55,8 +55,8 @@ const activeItemStyles =
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
-        href: dashboard(),
+        title: 'Lista de Pacientes',
+        href: index().url,
         icon: LayoutGrid,
     },
 ];
@@ -146,7 +146,7 @@ const rightNavItems: NavItem[] = [
                     </Sheet>
                 </div>
 
-                <Link :href="dashboard()" class="flex items-center gap-x-2">
+                <Link :href="index().url" class="flex items-center gap-x-2">
                     <AppLogo />
                 </Link>
 

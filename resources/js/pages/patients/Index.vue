@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import { ref, watch } from 'vue';
 import {
     ChevronLeft,
@@ -62,6 +62,9 @@ const props = defineProps<{
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Lista de Pacientes', href: index().url },
 ];
+
+const page = usePage();
+const flash = page.props.flash as { success?: string } | undefined;
 
 const filterName = ref(props.filters?.name ?? '');
 const filterCpf = ref(props.filters?.cpf ?? '');
@@ -152,6 +155,12 @@ function avatarColorClass(initials: string): string {
         <Head title="Lista de Pacientes" />
 
         <div class="mx-auto max-w-7xl flex flex-col gap-8 py-8 px-4 sm:px-6 lg:px-8">
+            <div
+                v-if="flash?.success"
+                class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
+            >
+                {{ flash.success }}
+            </div>
             <div
                 class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
             >

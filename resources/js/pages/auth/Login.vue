@@ -26,7 +26,7 @@ defineProps<{
             {{ status }}
         </div>
 
-        <Form v-bind="store.form()" :reset-on-success="['password']" v-slot="{ errors, processing }" class="space-y-6">
+        <Form :action="store.url()" method="post" :reset-on-success="['password']" v-slot="{ errors, processing }" class="space-y-6">
             <div class="space-y-1.5">
                 <Label for="email" class="ml-1 text-sm font-medium text-gray-700">
                     E-mail

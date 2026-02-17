@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, Head, usePage } from '@inertiajs/vue3';
+import { Form, Head } from '@inertiajs/vue3';
 import {
     Activity,
     Droplet,
@@ -28,8 +28,6 @@ const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Cadastro de Paciente', href: create().url },
 ];
 
-const page = usePage();
-const flash = page.props.flash as { success?: string } | undefined;
 </script>
 
 <template>
@@ -37,13 +35,6 @@ const flash = page.props.flash as { success?: string } | undefined;
         <Head title="Cadastro de Paciente" />
 
         <div class="flex flex-col gap-8 py-8 px-4 sm:px-6 lg:px-8">
-            <div
-                v-if="flash?.success"
-                class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800"
-            >
-                {{ flash.success }}
-            </div>
-
             <div
                 class="overflow-hidden rounded-2xl border border-border shadow-sm"
             >

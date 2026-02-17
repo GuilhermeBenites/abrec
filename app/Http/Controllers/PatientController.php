@@ -55,7 +55,7 @@ class PatientController extends Controller
 
         Patient::query()->create($data);
 
-        return redirect()->back()->with('success', 'Paciente cadastrado com sucesso.');
+        return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso.');
     }
 
     public function export(Request $request): BinaryFileResponse

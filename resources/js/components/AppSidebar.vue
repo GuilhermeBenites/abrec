@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { LayoutGrid, UserPlus, Users } from 'lucide-vue-next';
+import { Users } from 'lucide-vue-next';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import {
@@ -14,24 +14,13 @@ import {
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import AppLogo from './AppLogo.vue';
-import { dashboard } from '@/routes';
-import { create, index } from '@/routes/patients';
+import { index } from '@/routes/patients';
 
 const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard().url,
-        icon: LayoutGrid,
-    },
     {
         title: 'Lista de Pacientes',
         href: index().url,
         icon: Users,
-    },
-    {
-        title: 'Cadastrar Paciente',
-        href: create().url,
-        icon: UserPlus,
     },
 ];
 
@@ -43,7 +32,7 @@ const mainNavItems: NavItem[] = [
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
-                        <Link :href="dashboard()">
+                        <Link :href="index().url">
                             <AppLogo />
                         </Link>
                     </SidebarMenuButton>
