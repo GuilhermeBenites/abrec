@@ -10,34 +10,30 @@ defineProps<{
 </script>
 
 <template>
-    <div
-        class="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
-    >
-        <div class="w-full max-w-sm">
-            <div class="flex flex-col gap-8">
-                <div class="flex flex-col items-center gap-4">
-                    <Link
-                        :href="home()"
-                        class="flex flex-col items-center gap-2 font-medium"
-                    >
-                        <div
-                            class="mb-1 flex h-9 w-9 items-center justify-center rounded-md"
-                        >
-                            <AppLogoIcon
-                                class="size-9 fill-current text-[var(--foreground)] dark:text-white"
-                            />
-                        </div>
-                        <span class="sr-only">{{ title }}</span>
+    <div class="bg-gray-100 flex min-h-screen flex-col items-center justify-center font-sans text-gray-900">
+        <main class="w-full max-w-md px-4 sm:px-6">
+            <div class="bg-white overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+                <div class="p-8 pb-6 text-center">
+                    <Link :href="home()"
+                        class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 transition-colors hover:bg-red-100">
+                        <AppLogoIcon class="h-8 w-8 text-red-600" />
                     </Link>
-                    <div class="space-y-2 text-center">
-                        <h1 class="text-xl font-medium">{{ title }}</h1>
-                        <p class="text-center text-sm text-muted-foreground">
-                            {{ description }}
-                        </p>
-                    </div>
+                    <h1 class="mb-2 text-2xl font-bold text-gray-900">
+                        {{ title }}
+                    </h1>
+                    <p class="text-sm leading-relaxed text-gray-600">
+                        {{ description }}
+                    </p>
                 </div>
-                <slot />
+                <div class="space-y-6 px-8 pt-2 pb-8">
+                    <slot />
+                </div>
             </div>
-        </div>
+            <div class="mt-8 text-center">
+                <p class="text-xs text-gray-400">
+                    © 2026 Abrec. Todos os direitos reservados.
+                </p>
+            </div>
+        </main>
     </div>
 </template>

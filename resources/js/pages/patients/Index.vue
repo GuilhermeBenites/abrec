@@ -127,20 +127,20 @@ const healthIndicatorIcons: Record<string, typeof Droplet> = {
 };
 
 const healthIndicatorBgClasses: Record<string, string> = {
-    blue: 'bg-blue-100 dark:bg-blue-900/40 text-blue-500 dark:text-blue-300',
-    red: 'bg-red-100 dark:bg-red-900/40 text-red-500 dark:text-red-300',
-    orange: 'bg-orange-100 dark:bg-orange-900/40 text-orange-500 dark:text-orange-300',
-    green: 'bg-green-100 dark:bg-green-900/40 text-green-500 dark:text-green-300',
-    gray: 'bg-gray-100 dark:bg-gray-700/60 text-gray-400 dark:text-gray-500',
+    blue: 'bg-blue-100 text-blue-500',
+    red: 'bg-red-100 text-red-500',
+    orange: 'bg-orange-100 text-orange-500',
+    green: 'bg-green-100 text-green-500',
+    gray: 'bg-gray-100/60 text-gray-400',
 };
 
 function avatarColorClass(initials: string): string {
     const hash = initials.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
     const colors = [
         'bg-primary/10 text-primary',
-        'bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400',
-        'bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400',
-        'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400',
+        'bg-orange-100 text-orange-600',
+        'bg-purple-100 text-purple-600',
+        'bg-teal-100 text-teal-600',
     ];
 
     return colors[hash % colors.length];
@@ -157,12 +157,12 @@ function avatarColorClass(initials: string): string {
             >
                 <div>
                     <h2
-                        class="mb-2 text-3xl font-bold text-gray-900 dark:text-white"
+                        class="mb-2 text-3xl font-bold text-gray-900"
                     >
                         Lista de Pacientes
                     </h2>
                     <p
-                        class="text-gray-500 dark:text-gray-400"
+                        class="text-gray-500"
                     >
                         Gerencie e visualize os pacientes cadastrados no sistema.
                     </p>
@@ -170,14 +170,14 @@ function avatarColorClass(initials: string): string {
                 <div class="flex gap-3">
                     <a
                         :href="exportUrl()"
-                        class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-surface-dark dark:text-gray-200 dark:hover:bg-gray-700"
+                        class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
                     >
                         <Download class="size-5" />
                         Baixar Lista
                     </a>
                     <Link
                         :href="create().url"
-                        class="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-red-200 transition-all hover:bg-[#B91C1C] active:scale-95 dark:shadow-red-900/20"
+                        class="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-red-200 transition-all hover:bg-[#B91C1C] active:scale-95"
                     >
                         <UserPlus class="size-5" />
                         Cadastrar Novo Paciente
@@ -186,15 +186,15 @@ function avatarColorClass(initials: string): string {
             </div>
 
             <div
-                class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm dark:border-gray-700"
+                class="overflow-hidden rounded-2xl border border-gray-100 shadow-sm"
             >
                 <div
-                    class="border-b border-gray-100 p-6 dark:border-gray-700"
+                    class="border-b border-gray-100 p-6"
                 >
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
                         <div class="md:col-span-1">
                             <label
-                                class="mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300"
+                                class="mb-1 block text-xs font-medium text-gray-700"
                                 for="search-name"
                             >
                                 Nome do Paciente
@@ -212,14 +212,14 @@ function avatarColorClass(initials: string): string {
                                     v-model="filterName"
                                     type="text"
                                     placeholder="Buscar por nome..."
-                                    class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 pl-10 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 pl-10 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary"
                                     @keydown.enter="applyFilters"
                                 />
                             </div>
                         </div>
                         <div class="md:col-span-1">
                             <label
-                                class="mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300"
+                                class="mb-1 block text-xs font-medium text-gray-700"
                                 for="search-cpf"
                             >
                                 CPF
@@ -229,13 +229,13 @@ function avatarColorClass(initials: string): string {
                                 v-model="filterCpf"
                                 type="text"
                                 placeholder="000.000.000-00"
-                                class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary"
                                 @keydown.enter="applyFilters"
                             />
                         </div>
                         <div class="md:col-span-1">
                             <label
-                                class="mb-1 block text-xs font-medium text-gray-700 dark:text-gray-300"
+                                class="mb-1 block text-xs font-medium text-gray-700"
                                 for="filter-status"
                             >
                                 Status de Saúde
@@ -243,7 +243,7 @@ function avatarColorClass(initials: string): string {
                             <select
                                 id="filter-status"
                                 v-model="filterStatus"
-                                class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 text-sm text-gray-900 focus:border-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                class="w-full rounded-lg border border-gray-200 bg-gray-50 py-2 text-sm text-gray-900 focus:border-primary focus:ring-primary"
                             >
                                 <option value="">Todos</option>
                                 <option value="diabetic">Diabético</option>
@@ -255,7 +255,7 @@ function avatarColorClass(initials: string): string {
                         <div class="flex items-end md:col-span-1">
                             <button
                                 type="button"
-                                class="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-100 py-2 px-4 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                                class="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-100 py-2 px-4 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
                                 @click="applyFilters"
                             >
                                 <Filter class="size-5" />
@@ -266,52 +266,52 @@ function avatarColorClass(initials: string): string {
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-800/50">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50/50">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     Nome
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     CPF
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     Data de Nascimento
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     Cidade
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     Indicadores
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                                    class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
                                     scope="col"
                                 >
                                     Ações
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-surface-dark">
+                        <tbody class="divide-y divide-gray-200 bg-white">
                             <tr
                                 v-for="patient in patients.data"
                                 :key="patient.id"
-                                class="transition-colors hover:bg-gray-50 dark:hover:bg-gray-800/30"
+                                class="transition-colors hover:bg-gray-50"
                             >
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <div class="flex items-center">
@@ -323,12 +323,12 @@ function avatarColorClass(initials: string): string {
                                         </div>
                                         <div class="ml-4">
                                             <div
-                                                class="text-sm font-medium text-gray-900 dark:text-white"
+                                                class="text-sm font-medium text-gray-900"
                                             >
                                                 {{ patient.name }}
                                             </div>
                                             <div
-                                                class="text-xs text-gray-500 dark:text-gray-400"
+                                                class="text-xs text-gray-500"
                                             >
                                                 ID: #{{ String(patient.id).padStart(5, '0') }}
                                             </div>
@@ -337,26 +337,26 @@ function avatarColorClass(initials: string): string {
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <div
-                                        class="text-sm text-gray-900 dark:text-gray-300"
+                                        class="text-sm text-gray-900"
                                     >
                                         {{ patient.cpf }}
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <div
-                                        class="text-sm text-gray-900 dark:text-gray-300"
+                                        class="text-sm text-gray-900"
                                     >
                                         {{ patient.date_of_birth }}
                                     </div>
                                     <div
-                                        class="text-xs text-gray-500 dark:text-gray-400"
+                                        class="text-xs text-gray-500"
                                     >
                                         {{ patient.age }} anos
                                     </div>
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <span
-                                        class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+                                        class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-800"
                                     >
                                         {{ patient.city }}
                                     </span>
@@ -366,7 +366,7 @@ function avatarColorClass(initials: string): string {
                                         <div
                                             v-for="indicator in patient.health_indicators"
                                             :key="indicator.key"
-                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-white dark:border-surface-dark"
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-white"
                                             :class="healthIndicatorBgClasses[indicator.color] ?? healthIndicatorBgClasses.gray"
                                             :title="indicator.label"
                                         >
@@ -402,21 +402,21 @@ function avatarColorClass(initials: string): string {
 
                 <div
                     v-if="patients.last_page > 1"
-                    class="flex items-center justify-between border-t border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-6"
+                    class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6"
                 >
                     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                         <div>
-                            <p class="text-sm text-gray-700 dark:text-gray-400">
+                            <p class="text-sm text-gray-700">
                                 Mostrando
-                                <span class="font-medium text-gray-900 dark:text-white">
+                                <span class="font-medium text-gray-900">
                                     {{ patients.from ?? 0 }}
                                 </span>
                                 a
-                                <span class="font-medium text-gray-900 dark:text-white">
+                                <span class="font-medium text-gray-900">
                                     {{ patients.to ?? 0 }}
                                 </span>
                                 de
-                                <span class="font-medium text-gray-900 dark:text-white">
+                                <span class="font-medium text-gray-900">
                                     {{ patients.total }}
                                 </span>
                                 resultados
@@ -429,7 +429,7 @@ function avatarColorClass(initials: string): string {
                             >
                                 <button
                                     type="button"
-                                    class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 dark:ring-gray-600 dark:hover:bg-gray-700"
+                                    class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                                     :disabled="patients.current_page === 1"
                                     :aria-label="'Anterior'"
                                     @click="goToPage(patients.links[0]?.url)"
@@ -442,17 +442,17 @@ function avatarColorClass(initials: string): string {
                                 >
                                     <span
                                         v-if="!link.url"
-                                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0 dark:text-gray-400 dark:ring-gray-600"
+                                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0"
                                     >
                                         {{ link.label }}
                                     </span>
                                     <button
                                         v-else
                                         type="button"
-                                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0 dark:ring-gray-600"
+                                        class="relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
                                         :class="link.active
                                             ? 'z-10 bg-primary text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
-                                            : 'text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'"
+                                            : 'text-gray-900 hover:bg-gray-50'"
                                         @click="goToPage(link.url)"
                                     >
                                         {{ link.label }}
@@ -460,7 +460,7 @@ function avatarColorClass(initials: string): string {
                                 </template>
                                 <button
                                     type="button"
-                                    class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 dark:ring-gray-600 dark:hover:bg-gray-700"
+                                    class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                                     :disabled="patients.current_page === patients.last_page"
                                     :aria-label="'Próximo'"
                                     @click="goToPage(patients.links[patients.links.length - 1]?.url ?? null)"
@@ -474,19 +474,19 @@ function avatarColorClass(initials: string): string {
 
                 <div
                     v-else-if="patients.total > 0"
-                    class="border-t border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-6"
+                    class="border-t border-gray-200 px-4 py-3 sm:px-6"
                 >
-                    <p class="text-sm text-gray-700 dark:text-gray-400">
+                    <p class="text-sm text-gray-700">
                         Mostrando
-                        <span class="font-medium text-gray-900 dark:text-white">
+                        <span class="font-medium text-gray-900">
                             {{ patients.from }}
                         </span>
                         a
-                        <span class="font-medium text-gray-900 dark:text-white">
+                        <span class="font-medium text-gray-900">
                             {{ patients.to }}
                         </span>
                         de
-                        <span class="font-medium text-gray-900 dark:text-white">
+                        <span class="font-medium text-gray-900">
                             {{ patients.total }}
                         </span>
                         resultados

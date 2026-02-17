@@ -1,102 +1,173 @@
-<!DOCTYPE html>
-<html lang="pt-BR"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Login - MediCare</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#D92D2D", 
-                        "primary-hover": "#B91C1C",
-                        "background-light": "#F3F4F6", 
-                        "background-dark": "#111827", 
-                        "surface-light": "#FFFFFF",
-                        "surface-dark": "#1F2937",
-                        "input-bg-light": "#F9FAFB",
-                        "input-bg-dark": "#374151",
-                        "text-secondary-light": "#6B7280",
-                        "text-secondary-dark": "#9CA3AF",
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Login - MediCare</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#D92D2D',
+                            'primary-hover': '#B91C1C',
+                            'background-light': '#F3F4F6',
+                            'background-dark': '#111827',
+                            'surface-light': '#FFFFFF',
+                            'surface-dark': '#1F2937',
+                            'input-bg-light': '#F9FAFB',
+                            'input-bg-dark': '#374151',
+                            'text-secondary-light': '#6B7280',
+                            'text-secondary-dark': '#9CA3AF',
+                        },
+                        fontFamily: {
+                            sans: ['Inter', 'sans-serif'],
+                        },
+                        borderRadius: {
+                            DEFAULT: '0.5rem',
+                            xl: '1rem',
+                            '2xl': '1.5rem',
+                        },
+                        boxShadow: {
+                            soft: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        },
                     },
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        'xl': "1rem",
-                        '2xl': "1.5rem",
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                    }
                 },
-            },
-        };
-    </script>
-<style>
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
-        body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        body::-webkit-scrollbar-thumb {
-            background-color: rgba(156, 163, 175, 0.5);
-            border-radius: 20px;
-        }
-    </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col justify-center items-center transition-colors duration-300">
-<main class="w-full max-w-md px-4 sm:px-6">
-<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft overflow-hidden border border-gray-100 dark:border-gray-700">
-<div class="p-8 pb-6 text-center">
-<div class="bg-red-50 dark:bg-red-900/10 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-<span class="material-icons-round text-primary dark:text-red-400 text-3xl">medical_services</span>
-</div>
-<h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">MediCare</h1>
-<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">Acesse sua conta para gerenciar pacientes</p>
-</div>
-<form class="px-8 pb-8 pt-2 space-y-6">
-<div class="space-y-1.5">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 ml-1" for="email">Usuário ou E-mail</label>
-<div class="relative group">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-icons-round text-gray-400 dark:text-gray-500 text-xl group-focus-within:text-primary transition-colors">person</span>
-</div>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 pl-10 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:ring-primary/20 dark:focus:border-primary transition-all" id="email" placeholder="Seu nome de usuário ou e-mail" type="text"/>
-</div>
-</div>
-<div class="space-y-1.5">
-<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 ml-1" for="password">Senha</label>
-<div class="relative group">
-<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-<span class="material-icons-round text-gray-400 dark:text-gray-500 text-xl group-focus-within:text-primary transition-colors">lock</span>
-</div>
-<input class="w-full bg-input-bg-light dark:bg-input-bg-dark border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 pl-10 py-3 focus:ring-2 focus:ring-primary/20 focus:border-primary dark:focus:ring-primary/20 dark:focus:border-primary transition-all" id="password" placeholder="Sua senha de acesso" type="password"/>
-</div>
-<div class="flex justify-end pt-1">
-<a class="text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-red-400 transition-colors" href="#">Esqueci minha senha</a>
-</div>
-</div>
-<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-red-200 dark:shadow-red-900/20 transition-all transform active:scale-[0.98] mt-2" type="button">
-<span>Entrar no Sistema</span>
-<span class="material-icons-round text-lg">login</span>
-</button>
-</form>
-<div class="px-8 py-4 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-100 dark:border-gray-700 text-center">
-<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">
-                Problemas com o acesso? <a class="text-primary hover:underline font-medium" href="#">Contate o suporte</a>
-</p>
-</div>
-</div>
-<div class="mt-8 text-center">
-<p class="text-xs text-gray-400 dark:text-gray-600">© 2023 MediCare Health Systems. Todos os direitos reservados.</p>
-</div>
-</main>
-
-</body></html>
+            };
+        </script>
+        <style>
+            body::-webkit-scrollbar {
+                width: 8px;
+            }
+            body::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            body::-webkit-scrollbar-thumb {
+                background-color: rgba(156, 163, 175, 0.5);
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body
+        class="bg-background-light flex min-h-screen flex-col items-center justify-center font-sans text-gray-900 transition-colors duration-300"
+    >
+        <main class="w-full max-w-md px-4 sm:px-6">
+            <div
+                class="bg-surface-light shadow-soft overflow-hidden rounded-2xl border border-gray-100"
+            >
+                <div class="p-8 pb-6 text-center">
+                    <div
+                        class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50"
+                    >
+                        <span
+                            class="material-icons-round text-3xl text-primary"
+                            >medical_services</span
+                        >
+                    </div>
+                    <h1
+                        class="mb-2 text-2xl font-bold text-gray-900"
+                    >
+                        MediCare
+                    </h1>
+                    <p
+                        class="text-text-secondary-light text-sm leading-relaxed"
+                    >
+                        Acesse sua conta para gerenciar pacientes
+                    </p>
+                </div>
+                <form class="space-y-6 px-8 pt-2 pb-8">
+                    <div class="space-y-1.5">
+                        <label
+                            class="ml-1 block text-sm font-medium text-gray-700"
+                            for="email"
+                            >Usuário ou E-mail</label
+                        >
+                        <div class="group relative">
+                            <div
+                                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+                            >
+                                <span
+                                    class="material-icons-round text-xl text-gray-400 transition-colors group-focus-within:text-primary"
+                                    >person</span
+                                >
+                            </div>
+                            <input
+                                class="bg-input-bg-light w-full rounded-xl border-gray-200 py-3 pl-10 text-gray-900 placeholder-gray-400 transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                id="email"
+                                placeholder="Seu nome de usuário ou e-mail"
+                                type="text"
+                            />
+                        </div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label
+                            class="ml-1 block text-sm font-medium text-gray-700"
+                            for="password"
+                            >Senha</label
+                        >
+                        <div class="group relative">
+                            <div
+                                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+                            >
+                                <span
+                                    class="material-icons-round text-xl text-gray-400 transition-colors group-focus-within:text-primary"
+                                    >lock</span
+                                >
+                            </div>
+                            <input
+                                class="bg-input-bg-light w-full rounded-xl border-gray-200 py-3 pl-10 text-gray-900 placeholder-gray-400 transition-all focus:border-primary focus:ring-2 focus:ring-primary/20"
+                                id="password"
+                                placeholder="Sua senha de acesso"
+                                type="password"
+                            />
+                        </div>
+                        <div class="flex justify-end pt-1">
+                            <a
+                                class="text-text-secondary-light text-sm transition-colors hover:text-primary"
+                                href="#"
+                                >Esqueci minha senha</a
+                            >
+                        </div>
+                    </div>
+                    <button
+                        class="hover:bg-primary-hover mt-2 flex w-full transform items-center justify-center gap-2 rounded-xl bg-primary py-3.5 font-semibold text-white shadow-lg shadow-red-200 transition-all active:scale-[0.98]"
+                        type="button"
+                    >
+                        <span>Entrar no Sistema</span>
+                        <span class="material-icons-round text-lg">login</span>
+                    </button>
+                </form>
+                <div
+                    class="border-t border-gray-100 bg-gray-50 px-8 py-4 text-center"
+                >
+                    <p
+                        class="text-text-secondary-light text-xs"
+                    >
+                        Problemas com o acesso?
+                        <a
+                            class="font-medium text-primary hover:underline"
+                            href="#"
+                            >Contate o suporte</a
+                        >
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p class="text-xs text-gray-400">
+                    © 2023 MediCare Health Systems. Todos os direitos
+                    reservados.
+                </p>
+            </div>
+        </main>
+    </body>
+</html>

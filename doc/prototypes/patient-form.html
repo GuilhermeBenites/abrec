@@ -66,7 +66,7 @@
         </style>
     </head>
     <body
-        class="bg-background-light dark:bg-background-dark flex min-h-screen flex-col justify-center font-sans text-gray-900 transition-colors duration-300 dark:text-gray-100"
+        class="bg-background-light flex min-h-screen flex-col justify-center font-sans text-gray-900 transition-colors duration-300"
     >
         <main
             class="flex flex-grow items-center justify-center px-4 py-8 sm:px-6 lg:px-8"
@@ -74,24 +74,24 @@
             <div class="mx-auto w-full max-w-5xl">
                 <div class="mb-8 text-center">
                     <h2
-                        class="mb-2 text-3xl font-bold text-gray-900 dark:text-white"
+                        class="mb-2 text-3xl font-bold text-gray-900"
                     >
                         Cadastro de Paciente
                     </h2>
                     <p
-                        class="text-text-secondary-light dark:text-text-secondary-dark"
+                        class="text-text-secondary-light"
                     >
                         Formulário de admissão para novos pacientes.
                     </p>
                 </div>
                 <div
-                    class="bg-surface-light dark:bg-surface-dark shadow-soft overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-700"
+                    class="bg-surface-light shadow-soft overflow-hidden rounded-2xl border border-gray-100"
                 >
                     <div
-                        class="flex items-start gap-4 border-b border-gray-100 bg-red-50 p-6 sm:items-center dark:border-gray-700 dark:bg-red-900/10"
+                        class="flex items-start gap-4 border-b border-gray-100 bg-red-50 p-6 sm:items-center"
                     >
                         <div
-                            class="flex-shrink-0 rounded-xl bg-red-100 p-3 text-primary dark:bg-red-800 dark:text-red-200"
+                            class="flex-shrink-0 rounded-xl bg-red-100 p-3 text-primary"
                         >
                             <span class="material-icons-round text-3xl"
                                 >medical_services</span
@@ -99,12 +99,12 @@
                         </div>
                         <div>
                             <h3
-                                class="text-xl font-bold text-gray-900 dark:text-white"
+                                class="text-xl font-bold text-gray-900"
                             >
                                 Ficha de Admissão
                             </h3>
                             <p
-                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm"
+                                class="text-text-secondary-light text-sm"
                             >
                                 Preencha os dados do paciente abaixo com
                                 atenção.
@@ -127,12 +127,12 @@
                             </div>
                             <div class="space-y-1">
                                 <label
-                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    class="block text-sm font-medium text-gray-700"
                                     for="name"
                                     >Nome Completo</label
                                 >
                                 <input
-                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                     id="name"
                                     placeholder="Ex: João da Silva"
                                     type="text"
@@ -141,13 +141,13 @@
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="dob"
                                         >Nascimento</label
                                     >
                                     <div class="relative">
                                         <input
-                                            class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 pr-10 pl-3 text-gray-900 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                            class="bg-input-bg-light w-full rounded-lg border-gray-200 pr-10 pl-3 text-gray-900 transition-colors focus:border-primary focus:ring-primary"
                                             id="dob"
                                             type="date"
                                         />
@@ -155,11 +155,11 @@
                                 </div>
                                 <div class="space-y-1">
                                     <label
-                                        class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="mb-2 block text-sm font-medium text-gray-700"
                                         >Sexo</label
                                     >
                                     <div
-                                        class="bg-input-bg-light dark:bg-input-bg-dark relative flex h-[42px] rounded-lg border border-gray-200 p-1 dark:border-gray-600"
+                                        class="bg-input-bg-light relative flex h-[42px] rounded-lg border border-gray-200 p-1"
                                     >
                                         <input
                                             checked=""
@@ -169,7 +169,7 @@
                                             type="radio"
                                         />
                                         <label
-                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/m:bg-white peer-checked/m:text-primary peer-checked/m:shadow-sm dark:text-gray-400 dark:peer-checked/m:bg-gray-600 dark:peer-checked/m:text-white"
+                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/m:bg-white peer-checked/m:text-primary peer-checked/m:shadow-sm"
                                             for="gender-m"
                                             >Masculino</label
                                         >
@@ -180,7 +180,7 @@
                                             type="radio"
                                         />
                                         <label
-                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/f:bg-white peer-checked/f:text-primary peer-checked/f:shadow-sm dark:text-gray-400 dark:peer-checked/f:bg-gray-600 dark:peer-checked/f:text-white"
+                                            class="flex flex-1 cursor-pointer items-center justify-center rounded-md text-center text-sm font-medium text-gray-500 transition-all peer-checked/f:bg-white peer-checked/f:text-primary peer-checked/f:shadow-sm"
                                             for="gender-f"
                                             >Feminino</label
                                         >
@@ -189,12 +189,12 @@
                             </div>
                             <div class="space-y-1">
                                 <label
-                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    class="block text-sm font-medium text-gray-700"
                                     for="cpf"
                                     >CPF</label
                                 >
                                 <input
-                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                     id="cpf"
                                     placeholder="000.000.000-00"
                                     type="text"
@@ -202,12 +202,12 @@
                             </div>
                             <div class="space-y-1">
                                 <label
-                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    class="block text-sm font-medium text-gray-700"
                                     for="address"
                                     >Endereço</label
                                 >
                                 <input
-                                    class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                    class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                     id="address"
                                     placeholder="Rua, Número, Complemento"
                                     type="text"
@@ -216,12 +216,12 @@
                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="bairro"
                                         >Bairro</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="bairro"
                                         placeholder="Bairro"
                                         type="text"
@@ -229,12 +229,12 @@
                                 </div>
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="city"
                                         >Cidade</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="city"
                                         placeholder="Cidade"
                                         type="text"
@@ -256,12 +256,12 @@
                             <div class="mb-4 grid grid-cols-2 gap-4">
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="peso"
                                         >Peso (kg)</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="peso"
                                         placeholder="00.0"
                                         step="0.1"
@@ -270,12 +270,12 @@
                                 </div>
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="altura"
                                         >Altura (cm)</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="altura"
                                         placeholder="000"
                                         type="number"
@@ -283,14 +283,14 @@
                                 </div>
                             </div>
                             <div
-                                class="bg-input-bg-light dark:bg-input-bg-dark divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200 dark:divide-gray-700 dark:border-gray-700"
+                                class="bg-input-bg-light divide-y divide-gray-100 overflow-hidden rounded-xl border border-gray-200"
                             >
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-500 dark:bg-blue-900/40 dark:text-blue-300"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-500"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -298,7 +298,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >Diabético</span
                                         >
                                     </div>
@@ -310,16 +310,16 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 text-red-500 dark:bg-red-900/40 dark:text-red-300"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-red-100 text-red-500"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -327,7 +327,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >Hipertenso</span
                                         >
                                     </div>
@@ -339,16 +339,16 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-orange-500 dark:bg-orange-900/40 dark:text-orange-300"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-orange-500"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -356,7 +356,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >Problema Renal</span
                                         >
                                     </div>
@@ -368,16 +368,16 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 dark:bg-yellow-900/40 dark:text-yellow-400"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-100 text-yellow-600"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -385,7 +385,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >D.R.C na Família</span
                                         >
                                     </div>
@@ -397,16 +397,16 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-500 dark:bg-green-900/40 dark:text-green-300"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 text-green-500"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -414,7 +414,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >Obesidade</span
                                         >
                                     </div>
@@ -426,16 +426,16 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
                                 <div
-                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white dark:hover:bg-gray-800/50"
+                                    class="flex items-center justify-between p-4 transition-colors hover:bg-white"
                                 >
                                     <div class="flex items-center gap-3">
                                         <div
-                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 text-teal-500 dark:bg-teal-900/40 dark:text-teal-300"
+                                            class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 text-teal-500"
                                         >
                                             <span
                                                 class="material-icons-round text-xl"
@@ -443,7 +443,7 @@
                                             >
                                         </div>
                                         <span
-                                            class="font-medium text-gray-700 dark:text-gray-200"
+                                            class="font-medium text-gray-700"
                                             >Exame Fundo de Olho</span
                                         >
                                     </div>
@@ -455,7 +455,7 @@
                                             type="checkbox"
                                         />
                                         <div
-                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800/30"
+                                            class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-primary peer-focus:ring-4 peer-focus:ring-red-300/30 peer-focus:outline-none after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white"
                                         ></div>
                                     </label>
                                 </div>
@@ -463,12 +463,12 @@
                             <div class="mt-4 grid grid-cols-2 gap-4">
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="pressao"
                                         >Pressão Arterial</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="pressao"
                                         placeholder="12/8"
                                         type="text"
@@ -476,12 +476,12 @@
                                 </div>
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="glicemia"
                                         >Glicemia (mg/dL)</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="glicemia"
                                         placeholder="90"
                                         type="number"
@@ -491,12 +491,12 @@
                             <div class="mt-4">
                                 <div class="space-y-1">
                                     <label
-                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                                        class="block text-sm font-medium text-gray-700"
                                         for="creatinina"
                                         >Creatinina</label
                                     >
                                     <input
-                                        class="bg-input-bg-light dark:bg-input-bg-dark w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary dark:border-gray-600 dark:text-white dark:focus:border-primary dark:focus:ring-primary"
+                                        class="bg-input-bg-light w-full rounded-lg border-gray-200 text-gray-900 placeholder-gray-400 transition-colors focus:border-primary focus:ring-primary"
                                         id="creatinina"
                                         placeholder="0.0 mg/dL"
                                         type="text"
@@ -504,14 +504,14 @@
                                 </div>
                             </div>
                             <div
-                                class="mt-4 flex gap-3 rounded-lg border border-blue-100 bg-blue-50 p-4 dark:border-blue-900/30 dark:bg-blue-900/10"
+                                class="mt-4 flex gap-3 rounded-lg border border-blue-100 bg-blue-50 p-4"
                             >
                                 <span
-                                    class="material-icons-round mt-0.5 text-sm text-blue-500 dark:text-blue-400"
+                                    class="material-icons-round mt-0.5 text-sm text-blue-500"
                                     >info</span
                                 >
                                 <p
-                                    class="text-xs leading-relaxed text-blue-700 dark:text-blue-300"
+                                    class="text-xs leading-relaxed text-blue-700"
                                 >
                                     Certifique-se de perguntar ao paciente sobre
                                     seu histórico familiar para doenças
@@ -521,10 +521,10 @@
                             </div>
                         </div>
                         <div
-                            class="flex justify-end border-t border-gray-100 pt-6 lg:col-span-12 dark:border-gray-700"
+                            class="flex justify-end border-t border-gray-100 pt-6 lg:col-span-12"
                         >
                             <button
-                                class="hover:bg-primary-hover flex w-full transform items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-semibold text-white shadow-lg shadow-red-200 transition-all active:scale-95 sm:w-auto dark:shadow-red-900/20"
+                                class="hover:bg-primary-hover flex w-full transform items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 font-semibold text-white shadow-lg shadow-red-200 transition-all active:scale-95 sm:w-auto"
                                 type="button"
                             >
                                 <span class="material-icons-round"

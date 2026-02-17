@@ -48,7 +48,7 @@ const handleChange = (event: Event) => {
         <div
             :class="
                 cn(
-                    'relative h-6 w-11 rounded-full border border-gray-300 bg-gray-200 shadow-inner transition-all after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[\'\'] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 dark:border-gray-600 dark:bg-gray-700 dark:after:border-gray-600 dark:peer-focus:ring-red-800/30 peer-checked:bg-primary',
+                    'relative h-6 w-11 rounded-full border border-gray-300 bg-gray-200 shadow-inner transition-all after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[\'\'] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300/30 peer-checked:bg-primary',
                     props.class
                 )
             "
