@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class PatientsExport implements FromCollection, WithHeadings
 {
     /**
-     * @param  array{name?: string, cpf?: string, status?: string}  $filters
+     * @param  array{name?: string, cpf?: string, health_indicators?: array<int, string>}  $filters
      */
     public function __construct(
         private readonly array $filters = []
@@ -92,14 +92,27 @@ class PatientsExport implements FromCollection, WithHeadings
             }
         }
 
-        $status = $this->filters['status'] ?? '';
-        match ($status) {
-            'diabetic' => $query->where('is_diabetic', true),
-            'hypertensive' => $query->where('is_hypertensive', true),
-            'renal' => $query->where('has_kidney_problem', true),
-            'obesity' => $query->where('is_obese', true),
-            default => null,
-        };
+        $indicators = $this->filters['health_indicators'] ?? [];
+        if (is_array($indicators) && ! empty($indicators)) {
+            $query->where(function (Builder $q) use ($indicators): void {
+                $first = true;
+                foreach ($indicators as $indicator) {
+                    $column = match ($indicator) {
+                        'diabetic' => 'is_diabetic',
+                        'hypertensive' => 'is_hypertensive',
+                        'renal' => 'has_kidney_problem',
+                        'obesity' => 'is_obese',
+                        default => null,
+                    };
+                    if ($column !== null) {
+                        $first
+                            ? $q->where($column, true)
+                            : $q->orWhere($column, true);
+                        $first = false;
+                    }
+                }
+            });
+        }
 
         return $query;
     }

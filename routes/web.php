@@ -16,6 +16,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('patients/export', [PatientController::class, 'export'])->name('patients.export');
     Route::get('patients/create', [PatientController::class, 'create'])->name('patients.create');
     Route::post('patients', [PatientController::class, 'store'])->name('patients.store');
+    Route::get('patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
+    Route::put('patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
+    Route::delete('patients/{patient}', [PatientController::class, 'destroy'])->name('patients.destroy');
 });
 
 require __DIR__.'/settings.php';

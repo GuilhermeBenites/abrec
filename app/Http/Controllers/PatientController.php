@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Exports\PatientsExport;
 use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -19,7 +21,9 @@ class PatientController extends Controller
         $filters = [
             'name' => $request->string('name')->trim()->toString() ?: null,
             'cpf' => $request->string('cpf')->trim()->toString() ?: null,
-            'status' => $request->string('status')->trim()->toString() ?: null,
+            'health_indicators' => array_values(array_filter(
+                array_map(fn (string $v) => trim($v) ?: null, $request->array('health_indicators', []) ?: [])
+            )) ?: null,
         ];
         $filters = array_filter($filters);
 
@@ -40,7 +44,7 @@ class PatientController extends Controller
         return Inertia::render('patients/Create');
     }
 
-    public function store(StorePatientRequest $request)
+    public function store(StorePatientRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -58,12 +62,68 @@ class PatientController extends Controller
         return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso.');
     }
 
+    public function edit(Patient $patient): Response
+    {
+        $patientData = [
+            'id' => $patient->id,
+            'name' => $patient->name,
+            'cpf' => $this->formatCpf($patient->cpf),
+            'date_of_birth' => $patient->date_of_birth->format('Y-m-d'),
+            'gender' => $patient->gender,
+            'address' => $patient->address,
+            'neighborhood' => $patient->neighborhood,
+            'city' => $patient->city,
+            'weight' => $patient->weight !== null ? (string) $patient->weight : '',
+            'height' => $patient->height !== null ? (string) $patient->height : '',
+            'blood_pressure' => $patient->blood_pressure ?? '',
+            'blood_glucose' => $patient->blood_glucose !== null ? (string) $patient->blood_glucose : '',
+            'creatinine' => $patient->creatinine ?? '',
+            'is_diabetic' => $patient->is_diabetic,
+            'is_hypertensive' => $patient->is_hypertensive,
+            'has_kidney_problem' => $patient->has_kidney_problem,
+            'has_family_drc' => $patient->has_family_drc,
+            'is_obese' => $patient->is_obese,
+            'has_back_eye_exam' => $patient->has_back_eye_exam,
+        ];
+
+        return Inertia::render('patients/Edit', [
+            'patient' => $patientData,
+        ]);
+    }
+
+    public function update(UpdatePatientRequest $request, Patient $patient): RedirectResponse
+    {
+        $data = $request->validated();
+
+        $booleanFields = [
+            'is_diabetic', 'is_hypertensive', 'has_kidney_problem',
+            'has_family_drc', 'is_obese', 'has_back_eye_exam',
+        ];
+
+        foreach ($booleanFields as $field) {
+            $data[$field] = (bool) ($data[$field] ?? false);
+        }
+
+        $patient->update($data);
+
+        return redirect()->route('patients.index')->with('success', 'Paciente atualizado com sucesso.');
+    }
+
+    public function destroy(Patient $patient): RedirectResponse
+    {
+        $patient->delete();
+
+        return redirect()->route('patients.index')->with('success', 'Paciente excluído com sucesso.');
+    }
+
     public function export(Request $request): BinaryFileResponse
     {
         $filters = [
             'name' => $request->string('name')->trim()->toString() ?: null,
             'cpf' => $request->string('cpf')->trim()->toString() ?: null,
-            'status' => $request->string('status')->trim()->toString() ?: null,
+            'health_indicators' => array_values(array_filter(
+                array_map(fn (string $v) => trim($v) ?: null, $request->array('health_indicators', []) ?: [])
+            )) ?: null,
         ];
         $filters = array_filter($filters);
 
@@ -75,7 +135,7 @@ class PatientController extends Controller
     }
 
     /**
-     * @param  array<string, string>  $filters
+     * @param  array<string, string|array<int, string>>  $filters
      */
     private function buildPatientQuery(array $filters): Builder
     {
@@ -86,20 +146,33 @@ class PatientController extends Controller
         }
 
         if (! empty($filters['cpf'])) {
-            $cpfDigits = preg_replace('/\D/', '', $filters['cpf']);
+            $cpfDigits = preg_replace('/\D/', '', (string) $filters['cpf']);
             if ($cpfDigits !== '') {
                 $query->where('cpf', 'like', '%'.$cpfDigits.'%');
             }
         }
 
-        $status = $filters['status'] ?? null;
-        match ($status) {
-            'diabetic' => $query->where('is_diabetic', true),
-            'hypertensive' => $query->where('is_hypertensive', true),
-            'renal' => $query->where('has_kidney_problem', true),
-            'obesity' => $query->where('is_obese', true),
-            default => null,
-        };
+        $indicators = $filters['health_indicators'] ?? [];
+        if (is_array($indicators) && ! empty($indicators)) {
+            $query->where(function (Builder $q) use ($indicators): void {
+                $first = true;
+                foreach ($indicators as $indicator) {
+                    $column = match ($indicator) {
+                        'diabetic' => 'is_diabetic',
+                        'hypertensive' => 'is_hypertensive',
+                        'renal' => 'has_kidney_problem',
+                        'obesity' => 'is_obese',
+                        default => null,
+                    };
+                    if ($column !== null) {
+                        $first
+                            ? $q->where($column, true)
+                            : $q->orWhere($column, true);
+                        $first = false;
+                    }
+                }
+            });
+        }
 
         return $query;
     }
