@@ -13,7 +13,7 @@ jobs:
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2' # Versão que você usa no ABREC
+          php-version: '8.3'
 
       - name: Instalar Dependências (Composer)
         run: composer install --no-dev --optimize-autoloader
