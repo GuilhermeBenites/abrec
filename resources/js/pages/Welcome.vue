@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { login, register } from '@/routes';
+import { login } from '@/routes';
 import { index } from '@/routes/patients';
 
-withDefaults(
-    defineProps<{
-        canRegister: boolean;
-    }>(),
-    {
-        canRegister: true,
-    },
-);
 </script>
 
 <template>
@@ -38,13 +30,6 @@ withDefaults(
                         class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035]"
                     >
                         Entrar
-                    </Link>
-                    <Link
-                        v-if="canRegister"
-                        :href="register()"
-                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a]"
-                    >
-                        Cadastrar
                     </Link>
                 </template>
             </nav>

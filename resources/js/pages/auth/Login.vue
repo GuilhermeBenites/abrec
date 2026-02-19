@@ -13,7 +13,6 @@ import { request } from '@/routes/password';
 defineProps<{
     status?: string;
     canResetPassword: boolean;
-    canRegister: boolean;
 }>();
 </script>
 
