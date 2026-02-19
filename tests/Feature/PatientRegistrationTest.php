@@ -147,6 +147,27 @@ test('validation fails for invalid date of birth in the future', function () {
     $response->assertSessionHasErrors('date_of_birth');
 });
 
+test('blood pressure accepts single digit diastolic like 12/8', function () {
+    $user = User::factory()->create();
+
+    $patientData = [
+        'name' => 'Carlos Oliveira',
+        'cpf' => '55566677788',
+        'date_of_birth' => '1970-07-10',
+        'gender' => 'male',
+        'address' => 'Rua A, 1',
+        'neighborhood' => 'Centro',
+        'city' => 'São Paulo',
+        'blood_pressure' => '12/8',
+    ];
+
+    $response = $this
+        ->actingAs($user)
+        ->post(route('patients.store'), $patientData);
+
+    $response->assertSessionHasNoErrors();
+});
+
 test('validation fails for invalid gender', function () {
     $user = User::factory()->create();
 

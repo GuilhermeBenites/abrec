@@ -41,7 +41,7 @@ class UpdatePatientRequest extends FormRequest
             'city' => ['required', 'string', 'max:100'],
             'weight' => ['nullable', 'numeric', 'min:0', 'max:999.99'],
             'height' => ['nullable', 'integer', 'min:1', 'max:300'],
-            'blood_pressure' => ['nullable', 'string', 'max:10', 'regex:/^\d{2,3}\/\d{2}$/'],
+            'blood_pressure' => ['nullable', 'string', 'max:10', 'regex:/^\d{1,3}\/\d{1,3}$/'],
             'blood_glucose' => ['nullable', 'integer', 'min:0', 'max:999'],
             'creatinine' => ['nullable', 'string', 'max:10'],
             'is_diabetic' => ['nullable', 'boolean'],

@@ -248,14 +248,14 @@ function confirmDelete() {
                             </p>
                         </div>
                     </div>
-                    <div class="flex gap-3">
+                    <div class="flex flex-wrap gap-3">
                         <a v-if="page.props.auth?.isAdmin" :href="exportUrl()"
-                            class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
+                            class="flex flex-1 sm:flex-none justify-center items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
                             <Download class="size-5" />
                             Baixar Lista
                         </a>
                         <Link :href="create().url"
-                            class="flex items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white shadow-lg shadow-red-200 transition-all hover:bg-[#B91C1C] active:scale-95">
+                            class="flex flex-1 sm:flex-none justify-center items-center gap-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white shadow-lg shadow-red-200 transition-all hover:bg-[#B91C1C] active:scale-95">
                             <UserPlus class="size-5" />
                             Cadastrar Novo Paciente
                         </Link>
@@ -308,7 +308,58 @@ function confirmDelete() {
                     </div>
                 </div>
 
-                <div class="overflow-x-auto">
+                <div class="block md:hidden divide-y divide-gray-100 bg-white">
+                    <div v-for="patient in patients.data" :key="patient.id"
+                        class="flex items-start gap-3 p-4 transition-colors active:bg-gray-50">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold"
+                            :class="avatarColorClass(patient.initials)">
+                            {{ patient.initials }}
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="text-sm font-medium text-gray-900">
+                                {{ patient.name }}
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                ID: #{{ String(patient.id).padStart(5, '0') }} · {{ patient.cpf }}
+                            </div>
+                            <div class="mt-1 flex flex-wrap items-center gap-2">
+                                <span
+                                    class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">
+                                    {{ patient.city }}
+                                </span>
+                                <span class="text-xs text-gray-500">
+                                    {{ patient.age }} anos
+                                </span>
+                            </div>
+                            <div class="mt-2 flex items-center gap-2">
+                                <div class="flex -space-x-1">
+                                    <div v-for="indicator in patient.health_indicators" :key="indicator.key"
+                                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-white"
+                                        :class="healthIndicatorBgClasses[indicator.color] ?? healthIndicatorBgClasses.gray"
+                                        :title="indicator.label">
+                                        <component :is="healthIndicatorIcons[indicator.key] ?? Minus"
+                                            class="size-3" />
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <Link :href="edit({ patient: patient.id }).url"
+                                        class="p-1.5 text-gray-400 transition-colors hover:text-primary rounded"
+                                        title="Editar">
+                                        <Pencil class="size-4" />
+                                    </Link>
+                                    <button type="button"
+                                        class="p-1.5 text-gray-400 transition-colors hover:text-red-600 rounded"
+                                        title="Excluir"
+                                        @click="openDeleteModal({ id: patient.id, name: patient.name })">
+                                        <Trash2 class="size-4" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden md:block overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50/50">
                             <tr>
@@ -408,7 +459,25 @@ function confirmDelete() {
                 </div>
 
                 <div v-if="patients.last_page > 1"
-                    class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
+                    class="flex flex-col gap-3 border-t border-gray-200 px-4 py-3 sm:px-6">
+                    <div
+                        class="flex sm:hidden items-center justify-between gap-4 text-sm">
+                        <button type="button"
+                            class="rounded-lg border border-gray-200 px-3 py-2 font-medium text-gray-700 hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50"
+                            :disabled="patients.current_page === 1"
+                            @click="goToPage(patients.links[0]?.url ?? null)">
+                            ← Anterior
+                        </button>
+                        <span class="text-gray-600">
+                            Página {{ patients.current_page }} / {{ patients.last_page }}
+                        </span>
+                        <button type="button"
+                            class="rounded-lg border border-gray-200 px-3 py-2 font-medium text-gray-700 hover:bg-gray-50 disabled:pointer-events-none disabled:opacity-50"
+                            :disabled="patients.current_page === patients.last_page"
+                            @click="goToPage(patients.links[patients.links.length - 1]?.url ?? null)">
+                            Próximo →
+                        </button>
+                    </div>
                     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                         <div>
                             <p class="text-sm text-gray-700">
