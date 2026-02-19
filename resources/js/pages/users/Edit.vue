@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form, Head } from '@inertiajs/vue3';
+import { Form, Head, Link } from '@inertiajs/vue3';
 import { Pencil, User, Users } from 'lucide-vue-next';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -133,7 +133,10 @@ const breadcrumbs: BreadcrumbItem[] = [
                     </div>
 
                     <div
-                        class="flex justify-end border-t border-border pt-6 lg:col-span-12">
+                        class="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:justify-end lg:col-span-12">
+                        <Button as-child variant="outline" class="w-full sm:w-auto">
+                            <Link :href="index().url">Cancelar</Link>
+                        </Button>
                         <Button
                             type="submit"
                             class="w-full sm:w-auto"
