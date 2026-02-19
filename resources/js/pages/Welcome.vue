@@ -14,7 +14,7 @@ withDefaults(
 </script>
 
 <template>
-    <Head title="Welcome">
+    <Head title="Bem-vindo">
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     </Head>
@@ -37,14 +37,14 @@ withDefaults(
                         :href="login()"
                         class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035]"
                     >
-                        Log in
+                        Entrar
                     </Link>
                     <Link
                         v-if="canRegister"
                         :href="register()"
                         class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a]"
                     >
-                        Register
+                        Cadastrar
                     </Link>
                 </template>
             </nav>
@@ -58,10 +58,10 @@ withDefaults(
                 <div
                     class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20"
                 >
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
+                    <h1 class="mb-1 font-medium">Vamos começar</h1>
                     <p class="mb-2 text-[#706f6c] ">
-                        Laravel has an incredibly rich ecosystem. <br />We
-                        suggest starting with the following.
+                        O Laravel possui um ecossistema muito rico. <br />
+                        Sugerimos começar com o seguinte.
                     </p>
                     <ul class="mb-4 flex flex-col lg:mb-6">
                         <li
@@ -79,13 +79,13 @@ withDefaults(
                                 </span>
                             </span>
                             <span>
-                                Read the
+                                Leia a
                                 <a
                                     href="https://laravel.com/docs"
                                     target="_blank"
                                     class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 "
                                 >
-                                    <span>Documentation</span>
+                                    <span>documentação</span>
                                     <svg
                                         width="10"
                                         height="11"
@@ -118,7 +118,7 @@ withDefaults(
                                 </span>
                             </span>
                             <span>
-                                Watch video tutorials at
+                                Assista aos tutoriais em vídeo no
                                 <a
                                     href="https://laracasts.com"
                                     target="_blank"
@@ -150,7 +150,7 @@ withDefaults(
                                 target="_blank"
                                 class="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black "
                             >
-                                Deploy now
+                                Publicar agora
                             </a>
                         </li>
                     </ul>

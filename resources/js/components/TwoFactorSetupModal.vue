@@ -43,26 +43,26 @@ const pinInputContainerRef = useTemplateRef('pinInputContainerRef');
 const modalConfig = computed<TwoFactorConfigContent>(() => {
     if (props.twoFactorEnabled) {
         return {
-            title: 'Two-Factor Authentication Enabled',
+            title: 'Autenticação em duas etapas ativada',
             description:
-                'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
-            buttonText: 'Close',
+                'A autenticação em duas etapas foi ativada. Escaneie o código QR ou digite a chave de configuração no seu aplicativo autenticador.',
+            buttonText: 'Fechar',
         };
     }
 
     if (showVerificationStep.value) {
         return {
-            title: 'Verify Authentication Code',
-            description: 'Enter the 6-digit code from your authenticator app',
-            buttonText: 'Continue',
+            title: 'Verificar código de autenticação',
+            description: 'Digite o código de 6 dígitos do seu aplicativo autenticador',
+            buttonText: 'Continuar',
         };
     }
 
     return {
-        title: 'Enable Two-Factor Authentication',
+        title: 'Ativar autenticação em duas etapas',
         description:
-            'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
-        buttonText: 'Continue',
+            'Para finalizar a ativação, escaneie o código QR ou digite a chave de configuração no seu aplicativo autenticador',
+        buttonText: 'Continuar',
     };
 });
 
@@ -157,7 +157,7 @@ watch(
 
                         <div class="relative flex w-full items-center justify-center">
                             <div class="absolute inset-0 top-1/2 h-px w-full bg-border" />
-                            <span class="relative bg-card px-2 py-1">or, enter the code manually</span>
+                            <span class="relative bg-card px-2 py-1">ou digite o código manualmente</span>
                         </div>
 
                         <div class="flex w-full items-center justify-center space-x-2">
@@ -199,10 +199,10 @@ watch(
                             <div class="flex w-full items-center space-x-5">
                                 <Button type="button" variant="outline" class="w-auto flex-1"
                                     @click="showVerificationStep = false" :disabled="processing">
-                                    Back
+                                    Voltar
                                 </Button>
                                 <Button type="submit" class="w-auto flex-1" :disabled="processing || code.length < 6">
-                                    Confirm
+                                    Confirmar
                                 </Button>
                             </div>
                         </div>

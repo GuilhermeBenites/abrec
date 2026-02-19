@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Form, Head, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import { Pencil, User, Users } from 'lucide-vue-next';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
@@ -19,6 +20,18 @@ const props = defineProps<{
     };
     roles: Array<{ value: string; label: string }>;
 }>();
+
+const roleLabels: Record<string, string> = {
+    admin: 'Administrador',
+    user: 'Usuário',
+};
+
+const rolesWithLabels = computed(() =>
+    props.roles.map((r) => ({
+        ...r,
+        label: roleLabels[r.value] ?? r.label,
+    })),
+);
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Lista de Usuários', href: index().url },
@@ -121,7 +134,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             >
                                 <option value="">Selecione um perfil</option>
                                 <option
-                                    v-for="role in roles"
+                                    v-for="role in rolesWithLabels"
                                     :key="role.value"
                                     :value="role.value"
                                 >

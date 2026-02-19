@@ -45,6 +45,15 @@ const breadcrumbs: BreadcrumbItem[] = [
 const page = usePage();
 const flash = page.props.flash as { success?: string; error?: string } | undefined;
 
+const roleLabels: Record<string, string> = {
+    admin: 'Administrador',
+    user: 'Usuário',
+};
+
+function roleDisplayName(role: string): string {
+    return roleLabels[role] ?? role;
+}
+
 function goToPage(url: string | null) {
     if (url) {
         router.get(url, {}, { preserveState: true });
@@ -158,7 +167,7 @@ function confirmDelete() {
                                 <td class="whitespace-nowrap px-6 py-4">
                                     <span
                                         class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gray-100 text-gray-800">
-                                        {{ user.role }}
+                                        {{ roleDisplayName(user.role) }}
                                     </span>
                                 </td>
                                 <td class="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
