@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { Users } from 'lucide-vue-next';
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import { Shield, Users } from 'lucide-vue-next';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import {
@@ -15,14 +16,28 @@ import {
 import { type NavItem } from '@/types';
 import AppLogo from './AppLogo.vue';
 import { index } from '@/routes/patients';
+import { index as usersIndex } from '@/routes/users';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Lista de Pacientes',
-        href: index().url,
-        icon: Users,
-    },
-];
+const page = usePage();
+const isAdmin = computed(() => (page.props.auth as { isAdmin?: boolean })?.isAdmin ?? false);
+
+const mainNavItems = computed<NavItem[]>(() => {
+    const items: NavItem[] = [
+        {
+            title: 'Lista de Pacientes',
+            href: index().url,
+            icon: Users,
+        },
+    ];
+    if (isAdmin.value) {
+        items.push({
+            title: 'Usuários',
+            href: usersIndex().url,
+            icon: Shield,
+        });
+    }
+    return items;
+});
 
 </script>
 

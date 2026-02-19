@@ -2,7 +2,16 @@
 
 use App\Models\Patient;
 use App\Models\User;
+use Database\Seeders\RolesSeeder;
 use Inertia\Testing\AssertableInertia as Assert;
+
+function createAdminUser(): User
+{
+    $user = User::factory()->create();
+    $user->assignRole('admin');
+
+    return $user;
+}
 
 test('unauthenticated users are redirected to login when visiting patients list', function () {
     $response = $this->get(route('patients.index'));
@@ -150,28 +159,41 @@ test('pagination works correctly', function () {
     );
 });
 
-test('export generates excel file', function () {
-    $user = User::factory()->create();
+test('admin users can export patient list as excel file', function () {
+    $this->seed(RolesSeeder::class);
+    $admin = createAdminUser();
     Patient::factory()->create(['name' => 'Export Test']);
 
-    $response = $this->actingAs($user)->get(route('patients.export'));
+    $response = $this->actingAs($admin)->get(route('patients.export'));
 
     $response->assertOk();
     $response->assertDownload();
     expect($response->headers->get('content-type'))->toContain('spreadsheet');
 });
 
-test('export respects filters', function () {
-    $user = User::factory()->create();
+test('admin users can export patient list with filters', function () {
+    $this->seed(RolesSeeder::class);
+    $admin = createAdminUser();
     Patient::factory()->create(['name' => 'Included Patient', 'is_diabetic' => true]);
     Patient::factory()->create(['name' => 'Excluded Patient', 'is_diabetic' => false]);
 
-    $response = $this->actingAs($user)->get(route('patients.export', [
+    $response = $this->actingAs($admin)->get(route('patients.export', [
         'health_indicators' => ['diabetic'],
     ]));
 
     $response->assertOk();
     $response->assertDownload();
+});
+
+test('non-admin users receive 403 when exporting patient list', function () {
+    $this->seed(RolesSeeder::class);
+    $user = User::factory()->create();
+    $user->assignRole('user');
+    Patient::factory()->create(['name' => 'Some Patient']);
+
+    $response = $this->actingAs($user)->get(route('patients.export'));
+
+    $response->assertForbidden();
 });
 
 test('unauthenticated users are redirected when exporting', function () {
