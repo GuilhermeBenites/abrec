@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import { Shield, Users } from 'lucide-vue-next';
+import { computed } from 'vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import {
@@ -13,10 +13,10 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
-import AppLogo from './AppLogo.vue';
 import { index } from '@/routes/patients';
 import { index as usersIndex } from '@/routes/users';
+import { type NavItem } from '@/types';
+import AppLogo from './AppLogo.vue';
 
 const page = usePage();
 const isAdmin = computed(() => (page.props.auth as { isAdmin?: boolean })?.isAdmin ?? false);

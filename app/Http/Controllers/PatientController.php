@@ -72,6 +72,7 @@ class PatientController extends Controller
             'gender' => $patient->gender,
             'address' => $patient->address,
             'neighborhood' => $patient->neighborhood,
+            'phone' => $patient->phone ?? '',
             'city' => $patient->city,
             'weight' => $patient->weight !== null ? (string) $patient->weight : '',
             'height' => $patient->height !== null ? (string) $patient->height : '',

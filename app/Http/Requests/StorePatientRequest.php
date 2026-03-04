@@ -36,6 +36,7 @@ class StorePatientRequest extends FormRequest
             'address' => ['required', 'string', 'max:255'],
             'neighborhood' => ['required', 'string', 'max:100'],
             'city' => ['required', 'string', 'max:100'],
+            'phone' => ['nullable', 'string', 'max:20'],
             'weight' => ['nullable', 'numeric', 'min:0', 'max:999.99'],
             'height' => ['nullable', 'integer', 'min:1', 'max:300'],
             'blood_pressure' => ['nullable', 'string', 'max:10', 'regex:/^\d{1,3}\/\d{1,3}$/'],

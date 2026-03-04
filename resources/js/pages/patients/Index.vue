@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
-import { ref, watch } from 'vue';
 import {
     ChevronLeft,
     ChevronRight,
@@ -16,6 +15,8 @@ import {
     Search,
     Users,
 } from 'lucide-vue-next';
+import { ref, watch } from 'vue';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogClose,
@@ -25,9 +26,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
 import {
     create,
     destroy,
@@ -35,6 +34,7 @@ import {
     index,
     exportMethod,
 } from '@/routes/patients';
+import { type BreadcrumbItem } from '@/types';
 
 const props = defineProps<{
     patients: {

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
-import { ref } from 'vue';
 import { ChevronLeft, ChevronRight, Pencil, Trash2, UserPlus, Users } from 'lucide-vue-next';
+import { ref } from 'vue';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogClose,
@@ -11,10 +12,9 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
 import { create, destroy, edit, index } from '@/routes/users';
+import { type BreadcrumbItem } from '@/types';
 
 const props = defineProps<{
     users: {

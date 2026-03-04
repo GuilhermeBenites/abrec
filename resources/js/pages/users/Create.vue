@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { Form, Head, Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import { User, UserPlus, Users } from 'lucide-vue-next';
+import { computed } from 'vue';
 import InputError from '@/components/InputError.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem } from '@/types';
 import { create, index, store } from '@/routes/users';
+import { type BreadcrumbItem } from '@/types';
 
 const props = defineProps<{
     roles: Array<{ value: string; label: string }>;

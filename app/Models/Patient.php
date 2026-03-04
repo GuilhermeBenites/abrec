@@ -22,6 +22,7 @@ class Patient extends Model
         'address',
         'neighborhood',
         'city',
+        'phone',
         'weight',
         'height',
         'blood_pressure',
